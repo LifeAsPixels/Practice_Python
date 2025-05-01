@@ -6,4 +6,4 @@ def main():
     Instance = Problems.Problems()
 
     print(Instance.Fibonacci())
-    # print(Instance.Fizz_Buzz())
+    print(Instance.Fizz_Buzz())
