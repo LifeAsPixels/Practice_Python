@@ -1,5 +1,5 @@
 import inspect 
-
+from decimal import Decimal, Context, setcontext
 class Console_Utility:
     
     def Header(self, title = ""):
@@ -46,17 +46,19 @@ class Problems:
         print fizzbuzz if a number is divisible by 3 and 5'''
 
         self.Util.Header()
-
+        result = ''
         for index in range(0, number + 1):
             match index:
                 case index if (index % 3 == 0) and (index % 5 == 0):
-                    print("fizzbuzz")
+                    result += "fizzbuzz"
                 case index if index % 3 == 0:
-                    print("fizz")
+                    result += "fizz"
                 case index if index % 5 == 0:
-                    print("buzz")
+                    result += "buzz"
                 case _:
-                    print("...")
+                    result += "..."
+            result += '\n'
+        return result
 
 
     def isPalindromeNumber(self, number: int):
@@ -71,5 +73,51 @@ class Problems:
             if str(item)[::-1] == str(item):
                 palindrome.append(item)
         
-        print(palindrome)
-                
+        return palindrome
+    
+    def RockPaperScissors(self):
+        self.Util.Header()
+        import random
+
+        is_playing = True # unnecessary if you use the quit option
+        while is_playing == True:
+        # while True: # use this if you use the quit option mentioned later
+            player1 = input('Select Rock, Paper, or Scissors: ').lower()
+            player2 = random.choice(['Rock', 'Paper', 'Scissors']).lower()
+            print('Player 2 selected', player2)
+
+            if player1 == 'rock' and player2 == 'paper':
+                print('Player 2 Wins!')
+            elif player1 == 'paper' and player2 == 'scissors':
+                print('Player 2 Wins!')
+            elif player1 == 'scissors' and player2 == 'rock':
+                print('Player 2 Wins!')
+            elif player1 == player2:
+                print('Tie!')
+            else:
+                print('Player 1 Wins!')
+            
+            replay = input('Do you want to play again? (input y/n)')
+            if replay == 'n':
+                print('The user chose to stop playing Rock, Paper, Scissors')
+                is_playing = False
+                # quit() # optionally you could just quit here instead of changing the condition
+
+            else: # the else isn't necessary here but makes the code clear.
+                continue
+    
+    def Pi(self, terms = 1000000):
+        self.Util.Header()
+
+        setcontext(Context(prec = terms))
+        pi = Decimal(3)
+        sign = 1
+        number = 2
+        
+        while number < terms:
+            pi += Decimal((sign * 4) / (number * (number + 1) * (number + 2)))
+            sign *= -1
+            number += 2
+
+        return pi
+        
