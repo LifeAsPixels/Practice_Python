@@ -106,7 +106,8 @@ class Problems:
             else: # the else isn't necessary here but makes the code clear.
                 continue
     
-    def Pi(self, terms = 1000000):
+    def Pi_Innaccurate(self, terms = 1000000):
+        '''Calculate Pi using the Nalinkantha series'''
         self.Util.Header()
 
         setcontext(Context(prec = terms))
@@ -120,4 +121,19 @@ class Problems:
             number += 2
 
         return pi
-        
+    
+    def Eulers_Number(self, terms = 10000):
+        '''Euler's number calculated as The infinite series 1 + 1/1! + 1/2! + 1/3! + ...
+          can be used to calculate e. 
+        Each term in the series represents a factorial 
+        (the product of all positive integers up to that number). 
+        For instance, 1! = 1, 2! = 2 * 1 = 2, 3! = 3 * 2 * 1 = 6, and so on. '''
+        self.Util.Header()
+
+        euler = 2
+        factorial = [1]
+        for index in range(1, terms):
+            factorial.append(factorial[index - 1] * (index + 1))
+            euler += 1 / factorial[index]
+
+        return euler       
