@@ -177,11 +177,42 @@ class Problems:
             for num in range(3, number // 2):
                 if number % num == 0:
                     factors = True
+                    break
             if not factors:
                 primes.append(number)
         while len(primes) > count:
             primes.pop()
         return primes
 
-    def Sieve_of_Erathostenes(self):
-        return None
+    def Sieve_of_Erathostenes_Prime_Set(self, limit):
+        self.Util.Header()
+        
+        composites = []
+        primes = []
+
+        # for every number within the limit
+        for number in range(2, limit + 1):
+            # skip if the number is in composites
+            if number in composites:
+                continue
+            # reset factor checking to false
+            factors = False
+            # check for factors in number
+            for factor in range(2, number):
+                if number % factor == 0:
+                    factors = True
+                    if number in composites:
+                        break
+                    else:
+                        composites.append(number)
+                    break
+            # if a factor was found, add number to composites
+            # otherwise add the number to primes
+            if not factors:
+                primes.append(number)
+                # for every number in the range of limit divided by the prime found
+                for multiple in range(2, limit // primes[-1]):
+                    sieve = multiple * primes[-1]
+                    # add the multiples of the prime to the composites list
+                    composites.append(sieve)
+        return primes

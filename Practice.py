@@ -18,9 +18,10 @@ def main():
     print(Instance.square(8))
     print(Instance.area_circle(3))
 
-    t0 = time.time()
-    print(Instance.Prime_Numbers(5))
+    print(Instance.Prime_Numbers(2000))
     # Instance.practice()
+    t0 = time.time()
+    print(Instance.Sieve_of_Erathostenes_Prime_Set(10000))
     t1 = time.time()
 
     print(f'Program took {t1-t0:.4f} seconds to execute.')
