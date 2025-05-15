@@ -46,3 +46,22 @@ class Internet_Help:
         df = df.to_csv(index=False, header = True, columns = ['id', 'num1', 'num2', 'num3', 'num3_count'])
 
         print(df) # print the dataframe to console for viewing
+
+
+class MaxValue():        
+    def __init__(self,max_val):
+        self.max_val = max_val
+        
+    def __set_name__(self, owner, name):
+        self.name = name
+
+    def __set__(self, obj, value):
+        if value <= self.max_val:
+                raise ValueError(f"{self.name} must be less than {self.max_val}")
+        obj.__dict__[self.name] = value       
+        
+        
+class Demo():
+    A = MaxValue(5)
+    def __init__(self, A):
+        self.A = A

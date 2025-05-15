@@ -1,5 +1,8 @@
 import inspect 
 from decimal import Decimal, Context, setcontext
+import numpy as np
+
+
 class Console_Utility:
     
     def Header(self, title = ""):
@@ -8,16 +11,16 @@ class Console_Utility:
             print()
             print()
             print(f'{'<'.ljust(101, '=')}>')
-            print(f"<{title.ljust(60, ' ').rjust(65, ' ').ljust(80, '-').rjust(100, '-')}>")
+            print(f"<{title.ljust(len(title) + 5, ' ').rjust(len(title) + 10, ' ').ljust(60, '-').rjust(100, '-')}>")
             print(f'{'<'.ljust(101, '_')}>')
         else:
             print()
             print()
             caller_frame = inspect.stack()[1]
             print(f'{'<'.ljust(101, '=')}>')
-            print(f"<{caller_frame.function.ljust(60, ' ').rjust(65, ' ').ljust(80, '-').rjust(100, '-')}>")
+            print(f"<{caller_frame.function.ljust(len(caller_frame.function) + 5, ' ').rjust(len(caller_frame.function) + 10, ' ').ljust(60, '-').rjust(100, '-')}>")
             print(f'{'<'.ljust(101, '_')}>')
-            
+                      
  
 class Problems:
 
@@ -136,4 +139,49 @@ class Problems:
             factorial.append(factorial[index - 1] * (index + 1))
             euler += 1 / factorial[index]
 
-        return euler       
+        return euler
+    
+    def Calculator(self):
+        self.Util.Header()
+        x = int(input('What is x? '))
+        y = int(input('What is y? '))
+
+        return x + y
+    
+    def square(self, number):
+        self.Util.Header()
+
+        return number * number
+    
+    def area_circle(self, radius):
+        self.Util.Header()
+        return 2 * np.pi * radius ** 2
+    
+    def Prime_Numbers(self, count):
+        '''
+        Return a list of some count of prime numbers
+        
+        >>> Problems.Prime_Numbers(10)
+        [2, 3, 5, 7, 11, 13, 17, 19, 23]
+
+        >>> Problems.Prime_Numbers(5)
+        [2, 3, 5, 7]
+        '''
+        self.Util.Header()
+
+        primes = [2, 3]
+        number = primes[-1]
+        while len(primes) < count:
+            factors = False
+            number += 2
+            for num in range(3, number // 2):
+                if number % num == 0:
+                    factors = True
+            if not factors:
+                primes.append(number)
+        while len(primes) > count:
+            primes.pop()
+        return primes
+
+    def Sieve_of_Erathostenes(self):
+        return None
