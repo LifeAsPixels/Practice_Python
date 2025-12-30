@@ -5,7 +5,9 @@ def main():
 
     Instance = Internet_Help.Internet_Help()
 
-    Instance.CSV_Count_and_Remove_Duplicates()
+    # Instance.CSV_Count_and_Remove_Duplicates()
+
+    Instance.If_Else()
     
 if __name__ == "__main__":
     main()

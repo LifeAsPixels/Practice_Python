@@ -47,3 +47,17 @@ class Internet_Help:
 
         print(df) # print the dataframe to console for viewing
 
+    def Try_Except(self):
+        try:
+            print('tried')
+        finally:
+            print('try must have either except or finally clause')
+
+    def If_Else(self):
+        '''can if else be split by a for loop inbetween?'''
+        if True:
+            print('true')
+        for number in range(3):
+            if number == 2: break
+        else:
+            print('false')

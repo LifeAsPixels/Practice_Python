@@ -1,7 +1,16 @@
 import inspect 
 from decimal import Decimal, Context, setcontext
 import numpy as np
+import time
 
+def clock(func):
+    def clocked(*args, **kwargs):
+        t0 = time.perf_counter()
+        result = func(*args, **kwargs)
+        elapsed = time.perf_counter() - t0
+        print(f"[Runtime: {elapsed:.8f}s for {func.__name__}] -> {result}")
+        return result
+    return clocked
 
 class Console_Utility:
     
@@ -26,6 +35,7 @@ class Problems:
 
     Util = Console_Utility()
 
+    @clock
     def Fibonacci(self, number):
         '''fibonacci sequence has two starting seeds 0 and 1 or 1 and 1
         each number is given a position like an index
@@ -42,6 +52,7 @@ class Problems:
             # print(f'index: {index}  n: {n}')
         print(fib)
     
+    @clock
     def Fizz_Buzz(self, number):
         '''iterate through each number from 0 up through the injected number
         Print fizz if a number is divisible by 3
@@ -63,7 +74,7 @@ class Problems:
             result += '\n'
         return result
 
-
+    @clock
     def isPalindromeNumber(self, number: int):
         '''take in a max number
         iterate over every number through that number
@@ -78,6 +89,7 @@ class Problems:
         
         return palindrome
     
+    @clock
     def RockPaperScissors(self):
         self.Util.Header()
         import random
@@ -109,6 +121,7 @@ class Problems:
             else: # the else isn't necessary here but makes the code clear.
                 continue
     
+    @clock
     def Pi_Innaccurate(self, terms = 1000000):
         '''Calculate Pi using the Nalinkantha series'''
         self.Util.Header()
@@ -125,6 +138,7 @@ class Problems:
 
         return pi
     
+    @clock
     def Eulers_Number(self, terms = 10000):
         '''Euler's number calculated as The infinite series 1 + 1/1! + 1/2! + 1/3! + ...
           can be used to calculate e. 
@@ -141,6 +155,7 @@ class Problems:
 
         return euler
     
+    @clock
     def Calculator(self):
         self.Util.Header()
         x = int(input('What is x? '))
@@ -148,15 +163,18 @@ class Problems:
 
         return x + y
     
+    @clock
     def square(self, number):
         self.Util.Header()
 
         return number * number
     
+    @clock
     def area_circle(self, radius):
         self.Util.Header()
         return 2 * np.pi * radius ** 2
     
+    @clock
     def Prime_Numbers(self, count):
         '''
         Return a list of some count of prime numbers
@@ -184,6 +202,7 @@ class Problems:
             primes.pop()
         return primes
 
+    @clock
     def Sieve_of_Erathostenes_Prime_Set(self, limit):
         self.Util.Header()
         
@@ -216,3 +235,5 @@ class Problems:
                     # add the multiples of the prime to the composites list
                     composites.append(sieve)
         return primes
+
+        
