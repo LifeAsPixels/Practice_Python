@@ -45,7 +45,9 @@ class Problems:
         '''iterate through each number from 0 up through the injected number
         Print fizz if a number is divisible by 3
         print buzz if a number is divisible by 5
-        print fizzbuzz if a number is divisible by 3 and 5'''
+        print fizzbuzz if a number is divisible by 3 and 5
+        
+        this is written as mapping using an Imperative Procedure.'''
 
         self.console.print(Rule(self.func_name()))
         result = ''
@@ -62,6 +64,21 @@ class Problems:
             result += '\n'
         return result
 
+    @clock
+    @staticmethod
+    def fizz_buzz_functional_map(self, number):
+        '''This is fizz buzz written functionally so it can be executed as an individual call
+        or many calls can be made to it using map(). compare this to the imperative procedural 
+        example to see the missing for-loop that can now be optionally implemented using map()
+        like this:
+            number = 15
+            result = "\n".join(map(get_fizz_label, range(number + 1)))
+        '''
+        if number % 3 == 0 and number % 5 == 0: return "fizzbuzz"
+        if number % 3 == 0: return "fizz"
+        if number % 5 == 0: return "buzz"
+        return '...'
+    
     @clock
     def isPalindromeNumber(self, number: int):
         '''take in a max number
